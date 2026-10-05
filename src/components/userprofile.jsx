@@ -1,12 +1,15 @@
 import React, { useContext } from "react";
-import { UserContext, UserProvider } from "../store/usercontext";
+import { UserContext } from "../store/usercontext";
+import { ThemeContext } from "../store/ThemeContext";
 const UserProfile = () => {
   const { user, setUser } = useContext(UserContext);
+  const { theme, setTheme } = useContext(ThemeContext);
   return (
     <div>
-        <h1>=====From Context Api=====</h1>
+      <h1>=====From Context Api=====</h1>
       <h1>Welcome, {user}!</h1>
       <button onClick={() => setUser("John Doe")}>Login</button>
+      <button onClick={() => setTheme((prev) => !prev)}>{theme ? "Light Mode" : "Dark Mode"}</button>
     </div>
   );
 };

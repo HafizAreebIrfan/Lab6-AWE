@@ -5,20 +5,23 @@ import PropDrill from "./components/propdrill";
 import { Provider } from "react-redux";
 import store from "./store/userstore";
 import Counter from "./components/counter";
+import { ThemeProvider } from "./store/ThemeContext";
+import ThemeWrapper from "./components/themewrapper";
 
 function App() {
   const [propdrill, setpropdrill] = useState("User");
   return (
     <>
-      {/* context api */}
-      <UserProvider>
-        <Userprofile />
-      </UserProvider>
-      {/* Prop Drilling */}
-      <PropDrill user={propdrill} setpropdrill={setpropdrill} />
-      {/* Redux */}
       <Provider store={store}>
-        <Counter />
+        <ThemeProvider>
+          <ThemeWrapper>
+            <UserProvider>
+              <Userprofile />
+            </UserProvider>
+            <PropDrill user={propdrill} setpropdrill={setpropdrill} />
+            <Counter />
+          </ThemeWrapper>
+        </ThemeProvider>
       </Provider>
 
 
